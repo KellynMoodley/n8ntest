@@ -3,261 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collections Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="./output.css" rel="stylesheet">
-  <script defer src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
- 
+  <script defer src="test.js"></script>
+  <title>File Check and Webhook</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    #result-container {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      max-width: 500px;
+      word-wrap: break-word;
+    }
+    #triggerFileCheckBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    #triggerFileCheckBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 min-h-screen p-4">
-
-  <!-- Top Header -->
-  <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-lg shadow">
-        <div>
-            <h1 class="text-2xl font-bold">Collections Dashboard</h1>
-            <p class="text-gray-500">Agent: Sarah Johnson</p>
-        </div>
-
-        <!-- Centered Search Bar -->
-        <div
-            class="relative flex"
-            data-twe-input-wrapper-init
-            data-twe-input-group-ref>
-            <input
-                type="search"
-                class="peer block min-h-[auto] w-full rounded-lg shadow border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                placeholder="Search"
-                aria-label="Search"
-                id="search-focus"
-                aria-describedby="basic-addon4" />
-            <label
-                for="search-focus"
-                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                >Search
-            </label>
-            <button
-                class="relative z-[2] -ms-0.5 flex items-center rounded-e bg-primary px-5  text-xs font-medium uppercase leading-normal text-Black shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                type="button"
-                id="button-addon4"
-                data-twe-ripple-init
-                data-twe-ripple-color="light">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor">
-                    <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                </svg>
-                </span>
-            </button>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Online</span>
-            <span id="clock" class="text-gray-500">9:45 AM</span>
-        </div>
-        
-
-  </div>
-
-  <div class="grid grid-cols-12 gap-6">
-        <!-- Left Sidebar - Customer Info -->
-        <div class="col-span-3 bg-white p-4 rounded-lg shadow">
-        <h2 class="flex items-center gap-2 text-lg font-bold">
-            <span>👤</span> Customer Profile
-        </h2>
-        <div class="space-y-4 mt-4">
-            <div>
-            <label class="text-sm text-gray-500">Customer ID</label>
-            <p data-customer-id class="font-medium">CUS-001</p>
-            </div>
-            <div>
-            <label class="text-sm text-gray-500">Name</label>
-            <p data-customer-name class="font-medium">John Smith</p>
-            </div>
-            <div>
-            <label class="text-sm text-gray-500">Segmentation</label>
-            <span data-segmentation class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Engager</span>
-            </div>
-            <div>
-            <label class="text-sm text-gray-500">Delinquency Status</label>
-            <span data-delinquency class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">30+ Days</span>
-            </div>
-            <div>
-            <label class="text-sm text-gray-500">Outstanding Balance</label>
-            <p data-balance class="font-medium text-red-600">$2500.00</p>
-            </div>
-        </div>
-        </div>
-    
-
-        <!-- Main Content Area -->
-        <div class="col-span-9">
-            <div class="tabs w-full">
-                <div class="tabs-list flex space-x-4 mb-4">
-                    <button onclick="showTab('interaction')" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Current Interaction</button>
-                    <button onclick="showTab('history')" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Interaction History</button>
-                    <button onclick="showTab('payments')" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Payment History</button>
-                </div>
-            </div>
-
-            <!-- Interaction Tab Content -->
-            <div id="interaction" class="tab-content grid grid-cols-2 gap-6">
-                <!-- live chat Panel -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <h3 class="flex items-center gap-2 text-lg font-bold">
-                    <span>💬</span> Live Chat
-                    </h3>
-                    <!-- Chat Transcription -->
-                    <div class="space-y-1 max-h-40 overflow-y-auto pr-2">
-                        <!-- Customer Message Bubble -->
-                        <div class="flex flex-col items-start">
-                        <div class="bg-blue-50 text-blue-800 p-3 rounded-lg max-w-xs">
-                            <p class="text-sm">Hello, I’m struggling with my current payment schedule. Can we discuss some options?</p>
-                        </div>
-                        <span class="text-xs text-gray-400 mt-1">9:43 AM</span>
-                        </div>
-                    
-                        <!-- Agent Response -->
-                        <div class="flex flex-col items-end">
-                        <div class="bg-gray-100 text-gray-800 p-3 rounded-lg shadow max-w-xs">
-                            <p class="text-sm">Sure, I’d be happy to help. Let's explore some flexible payment plans that could work better for you.</p>
-                        </div>
-                        <span class="text-xs text-gray-400 mt-1">9:45 AM</span>
-                        </div>
-                    
-                        <!-- Customer Follow-up -->
-                        <div class="flex flex-col items-start">
-                        <div class="bg-blue-50 text-blue-800 p-3 rounded-lg max-w-xs">
-                            <p class="text-sm">Thank you. I’d prefer something that allows me to pay over a few months.</p>
-                        </div>
-                        <span class="text-xs text-gray-400 mt-1">9:46 AM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interaction History Tab Content -->
-            <div id="history" class="tab-content hidden">
-            <div class="bg-white p-4 rounded-lg shadow">
-                <h3 class="text-lg font-bold">Previous Calls</h3>
-                <div class="border-b pb-4 mt-4">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="font-medium">Previous Call - March 1, 2024</span>
-                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Promise to Pay Made</span>
-                </div>
-                <p class="text-sm text-gray-600">Customer agreed to pay $500 by March 15th. Expressed financial difficulties due to medical expenses.</p>
-                </div>
-            </div>
-            </div>
-
-            <!-- Payment History Tab Content -->
-            <div id="payments" class="tab-content hidden">
-            <div class="bg-white p-4 rounded-lg shadow">
-                <h3 class="text-lg font-bold">Payment History</h3>
-                <!-- Add payment history details here -->
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-    <div class="grid grid-cols-12 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h1 class="text-2xl font-bold mb-4">Rate this content</h1>
-            <div class="flex justify-center space-x-6">
-              <button id="thumbsUp" class="flex flex-col items-center text-gray-600 hover:text-green-500 transition">
-                <span class="text-4xl">👍</span>
-              </button>
-              <button id="thumbsDown" class="flex flex-col items-center text-gray-600 hover:text-red-500 transition">
-                <span class="text-4xl">👎</span>
-              </button>
-            </div>
-            <p id="feedbackMessage" class="hidden text-sm font-medium mt-1 text-gray-700"></p>
-          </div>
-        <!-- Main Bottom Content Area - Call Session Summary -->
-        <div class="col-span-9 max-h-40">
-            <!-- Interaction Tab Content -->
-            <div  class="grid grid-cols-2 gap-6">
-                <!-- Title -->
-                 <!-- Left Column: Title and Call Details -->
-                <div class="col-span-1 space-y-4">
-                    <h2 class="text-2xl font-bold border-b pb-4">Call Session Summary</h2>
-                    <button id="triggerFileCheckBtn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">triggerFileCheckBtn</button>
-                
-                    <!-- Call Details -->
-                    <div class="flex items-center">
-                    <div class="flex flex-col items-start">
-                        <span class="text-gray-500 text-sm">Agent:</span>
-                        <p class="font-medium"></p>
-                        <span class="text-gray-500 text-sm">Customer:</span>
-                        <p class="font-medium"></p>
-                        <span class="text-gray-500 text-sm">Call Duration:</span>
-                        <p class="font-medium"></p>
-                        <span class="text-gray-500 text-sm">Time:</span>
-                        <p class="font-medium"></p>
-                    </div>
-                    </div>
-
-
-                    <!-- Scrollable -->
-                    <div class="space-y-4 overflow-y-auto pr-5">
-                        <!-- Discussion Points -->
-                        <div class="space-y-1">
-                            <h3 class="text-lg font-semibold">Main Discussion</h3>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                <p id="result-container"></p>
-                            </ul>
-                        </div>
-                        
-                        <!-- Customer Status -->
-                        <div class="space-y-2">
-                            <h3 class="text-lg font-semibold">Customer Status</h3>
-                            <div class="flex items-center gap-4">
-                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Delinquency Status: </span>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Segmentation: </span>
-                               
-                            </div>
-                        </div>
-                    </div>
-                
-                    
-                </div>
-                <!-- Analysis Section -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <h3 class="flex items-center gap-2 text-lg font-bold">
-                    <span>📊</span> Sentiment Analysis
-                    </h3>
-                    <!-- Chart Container -->
-                    <canvas id="sentimentChart" class="mt-4"></canvas>
-                </div>
-
-            </div>
-
-
-
-        </div>
-    </div>    
-        
+<body>
+  <h1>File Check and Webhook Trigger</h1>
+  <button id="triggerFileCheckBtn">Check File and Fetch Webhook Data</button>
   
-
-
-
-
-  <!-- Bottom Action Bar -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-2">
-    <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
-      <div class="flex gap-4">
-      </div>
-    </div>
+  <div id="result-container">
+    <!-- Webhook data will be displayed here -->
+    <p>Waiting for data...</p>
   </div>
 </body>
 </html>
