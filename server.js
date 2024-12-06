@@ -7,7 +7,11 @@ require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use Heroku's provided port or default to 3000 locally
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
 // CORS Configuration
 //app.use(cors({
