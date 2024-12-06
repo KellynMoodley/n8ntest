@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
 app.use(cors({
   origin: ['https://truworths-5d9b0467377c.herokuapp.com/'],
 //  origin:'*',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
