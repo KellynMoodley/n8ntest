@@ -1,7 +1,7 @@
 // Frontend (test.js)
 async function triggerFileCheck() {
   try {
-    const response = await fetch('http://localhost:3000/check-file');
+    const response = await fetch('https://truworths-5d9b0467377c.herokuapp.com/check-file');
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
