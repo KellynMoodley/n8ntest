@@ -19,18 +19,18 @@ app.get('/', (req, res) => {
 });
 
 // CORS Configuration
-//app.use(cors({
-  //origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://localhost:3000'],
+app.use(cors({
+  origin: ['https://truworths-5d9b0467377c.herokuapp.com/'],
 //  origin:'*',
-//  methods: ['GET', 'POST'],
-//  credentials: true
-//}));
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
-app.use(cors());
+//app.use(cors());
 
 // Middleware
 app.use(express.json());
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 // Supabase Client
 const supabase = createClient(
